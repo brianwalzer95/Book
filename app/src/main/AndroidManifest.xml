@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bw.book">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -15,7 +16,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/app_name"
-            android:theme ="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +31,12 @@
         <activity
             android:name=".activity.ViewBook"
             android:windowSoftInputMode="stateHidden|adjustNothing" />
-        <activity android:name=".activity.ViewCart"></activity>
+        <activity android:name=".activity.ViewCart" />
+        <activity android:name=".activity.FinalPurchase" />
+        <activity android:name=".activity.PurchaseAdapter" />
+        <activity android:name=".activity.AddPurchaseDetails" />
+        <activity android:name=".activity.UserSearch" />
+        <activity android:name=".activity.SearchUsers"></activity>
     </application>
 
 </manifest>

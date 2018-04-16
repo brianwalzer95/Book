@@ -86,49 +86,49 @@ public class CustomerWelcome extends AppCompatActivity {
             }
         });
     }
-        public void getAllBooks(){
-            mFirebaseRef = FirebaseDatabase.getInstance().getReference("Book");
-            mFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+    public void getAllBooks(){
+        mFirebaseRef = FirebaseDatabase.getInstance().getReference("Book");
+        mFirebaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                        String id = ds.child("id").getValue(String.class);
-                        String title = ds.child("title").getValue(String.class);
-                        String author = ds.child("author").getValue(String.class);
-                        String category = ds.child("category").getValue(String.class);
-                        String image = ds.child("image").getValue(String.class);
-                        Double price = ds.child("price").getValue(Double.class);
-                        Integer quantity = ds.child("quantity").getValue(Integer.class);
-                        Integer noReviews = ds.child("noOfReviews").getValue(Integer.class);
-                        Double rating = ds.child("rating").getValue(Double.class);
+                    String id = ds.child("id").getValue(String.class);
+                    String title = ds.child("title").getValue(String.class);
+                    String author = ds.child("author").getValue(String.class);
+                    String category = ds.child("category").getValue(String.class);
+                    String image = ds.child("image").getValue(String.class);
+                    Double price = ds.child("price").getValue(Double.class);
+                    Integer quantity = ds.child("quantity").getValue(Integer.class);
+                    Integer noReviews = ds.child("noOfReviews").getValue(Integer.class);
+                    Double rating = ds.child("rating").getValue(Double.class);
 
 
-                        Book book = new Book(id, title, author, category, image, noReviews, quantity, price, rating);
+                    Book book = new Book(id, title, author, category, image, noReviews, quantity, price, rating);
 //                        idList.add(id);
-                        allBooks.add(book);
-                    }
-                    booksAdapter = new ViewAllBooksAdapter(allBooks,CustomerWelcome.this);
-                    listView.setAdapter(booksAdapter);
+                    allBooks.add(book);
+                }
+                booksAdapter = new ViewAllBooksAdapter(allBooks,CustomerWelcome.this);
+                listView.setAdapter(booksAdapter);
 
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                            ((GlobalVariables) CustomerWelcome.this.getApplication()).setCurrentBook(idList.get(position).toString());
 //                            startActivity(new Intent(CustomerWelcome.this, ViewBook.class));
-                        }
-                    });
+                    }
+                });
 
-                }
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
+            }
+        });
 
 
-        }
+    }
 
     public void sortBooks() {
         titleAscending.setOnClickListener(new View.OnClickListener() {
@@ -145,87 +145,81 @@ public class CustomerWelcome extends AppCompatActivity {
                 booksAdapter.notifyDataSetChanged();
             }
         });
-     titleDescending.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            titleDescending.setVisibility(View.INVISIBLE);
-            titleAscending.setVisibility(View.VISIBLE);
-            Collections.sort(allBooks, new Comparator<Book>() {
-                @Override
-                public int compare(Book book, Book t1) {
-                    return t1.getTitle().compareTo(book.getTitle());
-                }
-            });
-            booksAdapter.notifyDataSetChanged();
-        }
-    });
+        titleDescending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                titleDescending.setVisibility(View.INVISIBLE);
+                titleAscending.setVisibility(View.VISIBLE);
+                Collections.sort(allBooks, new Comparator<Book>() {
+                    @Override
+                    public int compare(Book book, Book t1) {
+                        return t1.getTitle().compareTo(book.getTitle());
+                    }
+                });
+                booksAdapter.notifyDataSetChanged();
+            }
+        });
 
         authorAscending.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            authorAscending.setVisibility(View.INVISIBLE);
-            authorDescending.setVisibility(View.VISIBLE);
-            Collections.sort(allBooks, new Comparator<Book>() {
-                @Override
-                public int compare(Book book, Book t1) {
-                    return book.getAuthor().compareTo(t1.getAuthor());
-                }
-            });
-            booksAdapter.notifyDataSetChanged();
-        }
-    });
+            @Override
+            public void onClick(View view) {
+                authorAscending.setVisibility(View.INVISIBLE);
+                authorDescending.setVisibility(View.VISIBLE);
+                Collections.sort(allBooks, new Comparator<Book>() {
+                    @Override
+                    public int compare(Book book, Book t1) {
+                        return book.getAuthor().compareTo(t1.getAuthor());
+                    }
+                });
+                booksAdapter.notifyDataSetChanged();
+            }
+        });
 
         authorDescending.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            authorDescending.setVisibility(View.INVISIBLE);
-            authorAscending.setVisibility(View.VISIBLE);
-            Collections.sort(allBooks, new Comparator<Book>() {
-                @Override
-                public int compare(Book book, Book t1) {
-                    return t1.getAuthor().compareTo(book.getAuthor());
-                }
-            });
-            booksAdapter.notifyDataSetChanged();
-        }
-    });
+            @Override
+            public void onClick(View view) {
+                authorDescending.setVisibility(View.INVISIBLE);
+                authorAscending.setVisibility(View.VISIBLE);
+                Collections.sort(allBooks, new Comparator<Book>() {
+                    @Override
+                    public int compare(Book book, Book t1) {
+                        return t1.getAuthor().compareTo(book.getAuthor());
+                    }
+                });
+                booksAdapter.notifyDataSetChanged();
+            }
+        });
 
         priceAscending.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            priceAscending.setVisibility(View.INVISIBLE);
-            priceDescending.setVisibility(View.VISIBLE);
-            Collections.sort(allBooks, new Comparator<Book>() {
-                @Override
-                public int compare(Book book, Book t1) {
-                    return t1.getPrice().compareTo(book.getPrice());
-                }
-            });
-            booksAdapter.notifyDataSetChanged();
-        }
-    });
+            @Override
+            public void onClick(View view) {
+                priceAscending.setVisibility(View.INVISIBLE);
+                priceDescending.setVisibility(View.VISIBLE);
+                Collections.sort(allBooks, new Comparator<Book>() {
+                    @Override
+                    public int compare(Book book, Book t1) {
+                        return t1.getPrice().compareTo(book.getPrice());
+                    }
+                });
+                booksAdapter.notifyDataSetChanged();
+            }
+        });
 
         priceDescending.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            priceDescending.setVisibility(View.INVISIBLE);
-            priceAscending.setVisibility(View.VISIBLE);
-            Collections.sort(allBooks, new Comparator<Book>() {
-                @Override
-                public int compare(Book book, Book t1) {
-                    return book.getPrice().compareTo(t1.getPrice());
-                }
-            });
-            booksAdapter.notifyDataSetChanged();
-        }
-    });
-}
-
-
-
-
-
-
+            @Override
+            public void onClick(View view) {
+                priceDescending.setVisibility(View.INVISIBLE);
+                priceAscending.setVisibility(View.VISIBLE);
+                Collections.sort(allBooks, new Comparator<Book>() {
+                    @Override
+                    public int compare(Book book, Book t1) {
+                        return book.getPrice().compareTo(t1.getPrice());
+                    }
+                });
+                booksAdapter.notifyDataSetChanged();
+            }
+        });
+    }
 
 }
 

@@ -32,7 +32,7 @@ public class AdminWelcomePage extends AppCompatActivity {
 
     ListView listView;
 
-    Button addBook,signOut, searchBooks, viewCart, titleAscending, titleDescending, authorAscending, authorDescending, priceAscending, priceDescending;
+    Button addBook,signOut, searchBooks, viewCart, titleAscending, titleDescending, authorAscending, authorDescending, priceAscending, priceDescending,userSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class AdminWelcomePage extends AppCompatActivity {
         signOut = (Button) findViewById(R.id.signout1);
         addBook = (Button) findViewById(R.id.goToAdd);
         searchBooks = (Button) findViewById(R.id.goToSearch);
+        userSearch = (Button) findViewById(R.id.goToUser);
         viewCart = (Button) findViewById(R.id.viewCart);
         titleAscending = (Button) findViewById(R.id.titleAscendingBtn);
         titleDescending = (Button) findViewById(R.id.titleDescendingBtn);
@@ -86,6 +87,22 @@ public class AdminWelcomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        viewCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminWelcomePage.this, ViewCart.class));
+            }
+        });
+
+        userSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminWelcomePage.this, SearchUsers.class));
+            }
+        });
+
+
     }
     public void getAllBooks(){
         mFirebaseRef = FirebaseDatabase.getInstance().getReference("Book");

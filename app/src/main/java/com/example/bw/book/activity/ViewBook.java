@@ -166,6 +166,7 @@ public class ViewBook extends AppCompatActivity {
     }
 
     public void leaveCommentRating(){
+
         final int rate = rating.getProgress();
 
         if(rate == 0){
@@ -179,17 +180,11 @@ public class ViewBook extends AppCompatActivity {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Book book = ds.getValue(Book.class);
                         int noOfRatings = book.getNoOfReviews();
-                        double rating = book.getRating();
+                        Double rating = book.getRating();
 
-                        Double oldRating = Double.valueOf(rating);
-                        int oldNoOfRatings = Integer.valueOf(noOfRatings);
+                        noOfRatings++;
 
-                        oldNoOfRatings++;
-
-                        Float newRating = (float)((rate + oldRating) / oldNoOfRatings);
-
-                        String savedRating = String.valueOf(newRating);
-                        String savedNoOfRatings = String.valueOf(oldNoOfRatings);
+                        Double newRating = (rate + rating) / noOfRatings;
 
                         mCommentRef = FirebaseDatabase.getInstance().getReference("Comment");
 
@@ -200,16 +195,16 @@ public class ViewBook extends AppCompatActivity {
                         Comment com = new Comment(userName, title, sRate, comment, bookID);
                         mCommentRef = FirebaseDatabase.getInstance().getReference("Comment");
                         mCommentRef.child(bookID).child(commentID).setValue(com);
-                        mBookRef.child(bookID).child("noOfReviews").setValue(savedNoOfRatings);
-                        mBookRef.child(bookID).child("rating").setValue(savedRating);
+                        mBookRef.child(bookID).child("noOfReviews").setValue(noOfRatings);
+                        mBookRef.child(bookID).child("rating").setValue(newRating);
                         Toast.makeText(getApplicationContext(), "You gave a rating of " + sRate, Toast.LENGTH_LONG).show();
                         if (userName.equalsIgnoreCase("Admin")) {
                             startActivity(new Intent(ViewBook.this, AdminWelcomePage.class));
+                        } else {
+                            startActivity(new Intent(ViewBook.this, CustomerWelcome.class));
                         }
-                        startActivity(new Intent(ViewBook.this, CustomerWelcome.class));
                     }
                 }
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 

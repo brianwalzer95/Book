@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nameSearchItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Display Name"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/emailSearchItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Display Email"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/addressSearchItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Display Address"
+                android:textSize="26sp" />
+        </LinearLayout>
+    </LinearLayout>
