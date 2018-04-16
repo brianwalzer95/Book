@@ -1,4 +1,4 @@
-package com.example.bw.book.activity;
+package com.example.bw.book.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

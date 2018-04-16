@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bw.book.R;
+import com.example.bw.book.adapter.CommentAdapter;
 import com.example.bw.book.entity.Book;
 import com.example.bw.book.entity.Cart;
 import com.example.bw.book.entity.Comment;

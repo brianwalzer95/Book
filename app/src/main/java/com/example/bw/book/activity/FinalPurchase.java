@@ -11,8 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.bw.book.R;
-import com.example.bw.book.activity.CustomerWelcome;
-import com.example.bw.book.activity.PurchaseAdapter;
+import com.example.bw.book.adapter.PurchaseAdapter;
 
 import com.example.bw.book.entity.Book;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class FinalPurchase extends AppCompatActivity {
@@ -124,6 +122,13 @@ public class FinalPurchase extends AppCompatActivity {
                 grossTotal.setText(myGrossTotal);
 
                 netTotal.setText(myNetTotal);
+                finalPurchase.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mCartRef.child(fbUser.getUid()).removeValue();
+                        startActivity(new Intent(FinalPurchase.this, CustomerWelcome.class));
+                    }
+                });
             }
 
             @Override

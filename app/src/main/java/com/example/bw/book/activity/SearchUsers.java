@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.bw.book.R;
+import com.example.bw.book.adapter.UserSearchAdapter;
 import com.example.bw.book.entity.GlobalVariables;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
