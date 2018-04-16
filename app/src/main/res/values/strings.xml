@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Book</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="categories">
+        <item>Fiction</item>
+        <item>Horror</item>
+        <item>Sci Fi</item>
+        <item>Biography</item>
+        <item>History</item>
+        <item>Education</item>
+    </string-array>
+</resources>
